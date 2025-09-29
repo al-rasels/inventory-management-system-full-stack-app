@@ -1,13 +1,17 @@
+/* -------------------------------------------------------------------------- */
+/*                                Nodemailer Setup                            */
+/* -------------------------------------------------------------------------- */
+
 const nodemailer = require("nodemailer");
 const SendEmailUtility = async (EmailTo, EmailText, EmailSubject) => {
   // 1. Create a transporter
   const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
+    host: "smtp.gmail.com", // SMTP server address
+    port: 587, // SMTP port
     secure: false, // true for 465, false for other ports
     auth: {
-      user: "info@teamrabbil.com", // generated ethereal user
-      pass: "Rabbil@12345", // generated ethereal password
+      user: "info@teamrabbil.com", //  email user
+      pass: "Rabbil@12345", //  password
     },
     tls: { rejectUnauthorized: false },
   });
@@ -24,5 +28,5 @@ const SendEmailUtility = async (EmailTo, EmailText, EmailSubject) => {
   // 3. Send the email
   return await transporter.sendMail(mailOptions);
 };
-
+// Exporting Module
 module.exports = SendEmailUtility;

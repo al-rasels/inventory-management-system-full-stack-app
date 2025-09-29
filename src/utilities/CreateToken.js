@@ -1,5 +1,8 @@
 const jwt = require("jsonwebtoken");
 
+/* -------------------------------------------------------------------------- */
+/*                         JWT Token Creation                                 */
+/* -------------------------------------------------------------------------- */
 const CreateToken = async (data) => {
   const Payload = {
     exp: Math.floor(Date.now() / 1000) + 24 * 60 * 60, // 1 day expiration

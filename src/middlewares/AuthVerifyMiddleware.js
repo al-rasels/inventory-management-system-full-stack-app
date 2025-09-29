@@ -1,3 +1,6 @@
+/* -------------------------------------------------------------------------- */
+/*                             Auth Verifying Middleware                      */
+/* -------------------------------------------------------------------------- */
 // lib for JWT
 const jwt = require("jsonwebtoken");
 module.exports = async (Request, Response, Next) => {
@@ -16,9 +19,9 @@ module.exports = async (Request, Response, Next) => {
       // Token is valid Extract email from decoded token
       const email = decoded["data"];
 
-      console.log(email);
       // Attach email to request headers for further use
-      Request.headers["email"] = email;
+      Request.email = email;
+      // Proceed to next middleware or route handler
       Next();
     }
   });

@@ -1,3 +1,6 @@
+/* -------------------------------------------------------------------------- */
+/*                            Password Reset Module                           */
+/* -------------------------------------------------------------------------- */
 const UserResetPassService = async (Request, DataModel) => {
   // Getting Data from Request
   const email = Request.body["email"];

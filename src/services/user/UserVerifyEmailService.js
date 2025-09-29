@@ -1,3 +1,6 @@
+/* -------------------------------------------------------------------------- */
+/*                             Email Verification module                      */
+/* -------------------------------------------------------------------------- */
 const SendEmailUtility = require("../../utilities/SendEmailUtility");
 const UserVerifyEmailService = async (Request, DataModel) => {
   try {
@@ -12,17 +15,16 @@ const UserVerifyEmailService = async (Request, DataModel) => {
       { $match: { email: email } },
       { $count: "total" },
     ]);
-
+    // If Exist then Insert OTP in OTP Collection and Send OTP to User Email
     if (UserCount.length > 0) {
       // OTP insert into OTP collection
       await OTPModel.create({ email: email, code: OTPCode });
 
       // Send OTP to user email
       const SendEmail = await SendEmailUtility(
-        email,
-        "Email Verification OTP",
-        `Your PIN Code is ${OTPCode}.`,
-        "Inventory Management System Team"
+        email, // User Email
+        `Your PIN Code is ${OTPCode}.  Please do not share this PIN with anyone.<Inventory Management System Team>`, // Email Body
+        "Email Verification OTP for Inventory Management System" // Email Subject
       );
       // Return Success
       return { status: "success", data: SendEmail };
@@ -31,8 +33,9 @@ const UserVerifyEmailService = async (Request, DataModel) => {
       return { status: "fail", data: "No User Found" };
     }
   } catch (error) {
+    // Return Error
     return { status: "fail", data: error.toString() };
   }
 };
-
+// Exporting Module
 module.exports = UserVerifyEmailService;

@@ -1,8 +1,12 @@
+/* -------------------------------------------------------------------------- */
+/*                       User Update module                                   */
+/* -------------------------------------------------------------------------- */
 const UserUpdateService = async (Request, DataModel) => {
   try {
+    const email = Request.email;
     // Update User Details
     const data = await DataModel.updateOne(
-      { email: Request.Headers["email"] },
+      { email: email },
       { $set: Request.body }
     );
     return { status: "success", data: data };

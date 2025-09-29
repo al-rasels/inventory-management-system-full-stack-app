@@ -1,4 +1,8 @@
-const CreateToken = require("../../utils/CreateToken");
+/* -------------------------------------------------------------------------- */
+/*                          User Login module                                 */
+/* -------------------------------------------------------------------------- */
+
+const CreateToken = require("../../utilities/CreateToken");
 const UserLoginService = async (Request, DataModel) => {
   try {
     // Fetch User Details
@@ -17,13 +21,17 @@ const UserLoginService = async (Request, DataModel) => {
     ]);
     // Generate Token if user found
     if (data.length > 0) {
+      // Generating Token
       const token = await CreateToken(data[0]["email"]);
+      // Return Success with Token
       return { status: "success", token: token, data: data[0] };
     } else {
-      return { status: "unauthorized", data: "Invalid Credentials" };
+      //  Unauthorized Error
+      return { status: "fail", data: "Invalid Credentials" };
     }
   } catch (error) {
     return { status: "fail", data: error.toString() };
   }
 };
+// Exporting Module
 module.exports = UserLoginService;

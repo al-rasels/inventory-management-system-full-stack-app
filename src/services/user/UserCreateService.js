@@ -1,3 +1,7 @@
+/* -------------------------------------------------------------------------- */
+/*                          User Registration module                          */
+/* -------------------------------------------------------------------------- */
+
 const UserCreateService = async (Request, DataModel) => {
   try {
     // Getting Data from Request
@@ -7,7 +11,9 @@ const UserCreateService = async (Request, DataModel) => {
     // Return Success
     return { status: "success", data: data };
   } catch (error) {
+    // Return Error
     return { status: "fail", data: error.toString() };
   }
 };
+// Exporting Module
 module.exports = UserCreateService;
