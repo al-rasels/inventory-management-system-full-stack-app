@@ -37,7 +37,7 @@ const limiter = rateLimit({
 
 // MongoDB Database Connection
 const URL =
-  "mongodb+srv://<username>:<password>@cluster0.vidqntm.mongodb.net/mern_ecommerce";
+  "mongodb+srv://<username>:<password>@cluster0.vidqntm.mongodb.net/inventory_management_system?retryWrites=true&w=majority";
 const option = { user: "rmshanto786", pass: "shanto786", autoIndex: true };
 
 mongoose
