@@ -6,14 +6,12 @@ const nodemailer = require("nodemailer");
 const SendEmailUtility = async (EmailTo, EmailText, EmailSubject) => {
   // 1. Create a transporter
   const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com", // SMTP server address
-    port: 587, // SMTP port
-    secure: false, // true for 465, false for other ports
+    host: "smtp.gmail.com",
+    port: 587,
     auth: {
-      user: "info@teamrabbil.com", //  email user
-      pass: "Rabbil@12345", //  password
+      user: "dev.alrasels@gmail.com",
+      pass: "mibnafqlfreqannh",
     },
-    tls: { rejectUnauthorized: false },
   });
 
   // 2. Define the email options

@@ -1,7 +1,11 @@
 /* -------------------------------------------------------------------------- */
 /*                           OTP Verification module                          */
 /* -------------------------------------------------------------------------- */
+// Required Modules
+
 const UserVerifyOtpService = async (Request, DataModel) => {
+
+
   try {
     // Get email and OTP from request params
     const email = Request.params.email; // User Email from Request
@@ -27,6 +31,7 @@ const UserVerifyOtpService = async (Request, DataModel) => {
         // updating record
         { email: email, otp: OTPCode, status: statusUpdate }
       );
+      return { status: "success", data: OTPUpdate };
     } else {
       // If OTP not found return invalid OTP
       return { status: "fail", data: "Invalid OTP" };

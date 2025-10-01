@@ -41,9 +41,9 @@ router.get(
   UsersController.ProfileDetails
 );
 // 5. Password Recovery Routes
-router.post("/RecoverVerifyEmail/:email", UsersController.RecoverVerifyEmail);
+router.get("/RecoverVerifyEmail/:email", UsersController.RecoverVerifyEmail);
 // 6. Verify OTP Route
-router.post("/RecoverVerifyOTP/:email/:otp", UsersController.RecoverVerifyOTP);
+router.get("/RecoverVerifyOTP/:email/:otp", UsersController.RecoverVerifyOTP);
 // 7. Reset Password Route
 router.post("/RecoverResetPass", UsersController.RecoverResetPass);
 

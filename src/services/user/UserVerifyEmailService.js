@@ -2,6 +2,9 @@
 /*                             Email Verification module                      */
 /* -------------------------------------------------------------------------- */
 const SendEmailUtility = require("../../utilities/SendEmailUtility");
+const OTPSModel = require("../../models/Users/OTPSModel");
+
+// User Email Verification Service
 const UserVerifyEmailService = async (Request, DataModel) => {
   try {
     // Getting Data from Request
@@ -15,10 +18,11 @@ const UserVerifyEmailService = async (Request, DataModel) => {
       { $match: { email: email } },
       { $count: "total" },
     ]);
+
     // If Exist then Insert OTP in OTP Collection and Send OTP to User Email
     if (UserCount.length > 0) {
       // OTP insert into OTP collection
-      await OTPModel.create({ email: email, code: OTPCode });
+      await OTPSModel.create({ email: email, otp: OTPCode });
 
       // Send OTP to user email
       const SendEmail = await SendEmailUtility(

@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const CreateToken = async (data) => {
   const Payload = {
     exp: Math.floor(Date.now() / 1000) + 24 * 60 * 60, // 1 day expiration
-    iat: Math.floor(Date.now() / 1000), // Issued at time
+    // iat: Math.floor(Date.now() / 1000), // Issued at time
     data: data,
   };
   return await jwt.sign(Payload, "SecretKey123456789");

@@ -2,6 +2,7 @@
 const DataModel = require("../../models/Users/UsersModel");
 const OTPSModel = require("../../models/Users/OTPSModel");
 
+// Importing Services
 const UserCreateService = require("../../services/user/UserCreateService");
 const UserLoginService = require("../../services/user/UserLoginService");
 const UserVerifyEmailService = require("../../services/user/UserVerifyEmailService");
@@ -10,6 +11,7 @@ const UserUpdateService = require("../../services/user/UserUpdateService");
 const UserVerifyOTPService = require("../../services/user/UserVerifyOtpService");
 const UserResetPassService = require("../../services/user/UserResetPassService");
 
+// Users Controller
 exports.Registration = async (Request, Response) => {
   const result = await UserCreateService(Request, DataModel);
   Response.status(200).json(result);
@@ -31,13 +33,10 @@ exports.RecoverVerifyEmail = async (Request, Response) => {
   Response.status(200).json(result);
 };
 exports.RecoverVerifyOTP = async (Request, Response) => {
-  const result = await UserVerifyOTPService(Request, DataModel);
+  const result = await UserVerifyOTPService(Request, OTPSModel);
   Response.status(200).json(result);
 };
-exports.RecoverVerifyOTP = async (Request, Response) => {
-  const result = await UserResetPassService(Request, OTPSModel);
-  Response.status(200).json(result);
-};
+
 exports.RecoverResetPass = async (Request, Response) => {
   const result = await UserResetPassService(Request, DataModel);
   Response.status(200).json(result);
