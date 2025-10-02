@@ -9,16 +9,22 @@
  * - Export the configured router
  */
 
-// required modules
+// Importing express library
 const express = require("express");
 
+// Importing Middlewares and Controllers
 const AuthVerifyMiddleware = require("../middlewares/AuthVerifyMiddleware");
 const UsersController = require("../controllers/Users/UsersController");
+const BrandsController = require("../controllers/Brands/BrandsController");
+const CategoriesController = require("../controllers/Categories/CategoriesController");
+const CustomersController = require("../controllers/Customers/CustomersController");
+const SuppliersController = require("../controllers/Suppliers/SuppliersController");
 
+//  Creating Router instance
 const router = express.Router();
 
 /* -------------------------------------------------------------------------- */
-/*                              User Profile Routes                           */
+/*                              Users Routes                                  */
 /* -------------------------------------------------------------------------- */
 
 // 1. User Registration Route
@@ -46,6 +52,66 @@ router.get("/RecoverVerifyEmail/:email", UsersController.RecoverVerifyEmail);
 router.get("/RecoverVerifyOTP/:email/:otp", UsersController.RecoverVerifyOTP);
 // 7. Reset Password Route
 router.post("/RecoverResetPass", UsersController.RecoverResetPass);
+
+
+/* -------------------------------------------------------------------------- */
+/*                              Brands Routes                                 */
+/* -------------------------------------------------------------------------- */
+
+//Create Brand
+router.post("/CreateBrand", AuthVerifyMiddleware, BrandsController.CreateBrand);
+// Update Brand
+router.post("/UpdateBrand/:id", AuthVerifyMiddleware, BrandsController.UpdateBrand);
+// Brand List
+router.get("/BrandList/:pageNo/:perPage/:searchKeyword", AuthVerifyMiddleware, BrandsController.BrandList);
+// Brand Dropdown
+router.get("/BrandDropDown", AuthVerifyMiddleware, BrandsController.BrandDropDown);
+
+
+/* -------------------------------------------------------------------------- */
+/*                             Categories Routes                              */
+/* -------------------------------------------------------------------------- */
+
+//Create Categories
+router.post("/CreateCategories", AuthVerifyMiddleware, CategoriesController.CreateCategories);
+// Update Categories
+router.post("/UpdateCategories/:id", AuthVerifyMiddleware, CategoriesController.UpdateCategories);
+// Categories List
+router.get("/CategoriesList/:pageNo/:perPage/:searchKeyword", AuthVerifyMiddleware, CategoriesController.CategoriesList);
+// Categories Dropdown
+router.get("/CategoriesDropDown", AuthVerifyMiddleware, CategoriesController.CategoriesDropDown);
+
+
+/* -------------------------------------------------------------------------- */
+/*                             Customers Routes                               */
+/* -------------------------------------------------------------------------- */
+
+//Create Customers
+router.post("/CreateCustomers", AuthVerifyMiddleware, CustomersController.CreateCustomers);
+// Update Customers
+router.post("/UpdateCustomers/:id", AuthVerifyMiddleware, CustomersController.UpdateCustomers);
+// Customers List
+router.get(
+  "/CustomersList/:pageNo/:perPage/:searchKeyword",
+  AuthVerifyMiddleware,
+  CustomersController.CustomersList
+);
+// // Customers Dropdown
+router.get("/CustomersDropDown", AuthVerifyMiddleware, CustomersController.CustomersDropDown);
+
+
+/* -------------------------------------------------------------------------- */
+/*                             Suppliers Routes                               */
+/* -------------------------------------------------------------------------- */
+
+//Create Suppliers
+router.post("/CreateSuppliers", AuthVerifyMiddleware, SuppliersController.CreateSuppliers);
+// Update Suppliers
+router.post("/UpdateSuppliers/:id", AuthVerifyMiddleware, SuppliersController.UpdateSuppliers);
+// Suppliers List
+router.get("/SuppliersList/:pageNo/:perPage/:searchKeyword", AuthVerifyMiddleware, SuppliersController.SuppliersList);
+// Suppliers Dropdown
+router.get("/SuppliersDropDown", AuthVerifyMiddleware, SuppliersController.SuppliersDropDown);
 
 //  Exporting router module
 module.exports = router;
