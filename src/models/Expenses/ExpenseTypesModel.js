@@ -1,7 +1,6 @@
-// Importing Mongoose module
+// importing mongoose module
 const mongoose = require("mongoose");
-
-// Categories Data Schema
+// Expense Types Data Schema
 const DataSchema = mongoose.Schema(
   {
     UserEmail: { type: String },
@@ -10,8 +9,8 @@ const DataSchema = mongoose.Schema(
   },
   { versionKey: false }
 );
+// Creating Expense Types Model
+const ExpenseTypeModel = mongoose.model("expensetypes", DataSchema);
 
-// Creating Categories Model
-const CategoriesModel = mongoose.model("categories", DataSchema);
-// Exporting Categories Model
-module.exports = CategoriesModel;
+// Exporting Expense Types Model
+module.exports = ExpenseTypeModel;

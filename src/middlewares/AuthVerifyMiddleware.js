@@ -3,6 +3,7 @@
 /* -------------------------------------------------------------------------- */
 // lib for JWT
 const jwt = require("jsonwebtoken");
+/* ------------------------------------------------------------------------ */
 module.exports = async (Request, Response, Next) => {
   // getting token from headers
   const Token = Request.headers["token"];

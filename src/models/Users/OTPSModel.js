@@ -1,4 +1,6 @@
+// importing mongoose module
 const mongoose = require("mongoose");
+// OTPs Data Schema
 const OTPSchema = mongoose.Schema(
   {
     email: { type: String },
@@ -8,6 +10,8 @@ const OTPSchema = mongoose.Schema(
   },
   { versionKey: false }
 );
+// Creating OTPS Model
 
 const OTPSModel = mongoose.model("otps", OTPSchema);
+// Exporting OTPS Model
 module.exports = OTPSModel;

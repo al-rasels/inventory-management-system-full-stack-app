@@ -1,4 +1,7 @@
+// importing mongoose module
 const mongoose = require("mongoose");
+
+// Users Data Schema
 const DataSchema = mongoose.Schema(
   {
     email: { type: String, unique: true },
@@ -11,6 +14,7 @@ const DataSchema = mongoose.Schema(
   },
   { versionKey: false }
 );
-
+// Creating Users Model
 const DataModel = mongoose.model("users", DataSchema);
+// Exporting Users Model
 module.exports = DataModel;
