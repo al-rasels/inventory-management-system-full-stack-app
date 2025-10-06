@@ -22,6 +22,7 @@ const SuppliersController = require("../controllers/Suppliers/SuppliersControlle
 const ExpenseTypesController = require("../controllers/Expense/ExpenseTypesController");
 const ExpensesController = require("../controllers/Expense/ExpensesController");
 const ProductsController = require("../controllers/Products/ProductsController");
+const PurchasesController = require("../controllers/Purchases/PurchasesController");
 
 /* -------------------------------------------------------------------------- */
 //  Creating Router instance
@@ -238,6 +239,17 @@ router.get(
   AuthVerifyMiddleware,
   ProductsController.ProductsList
 );
+
+/* -------------------------------------------------------------------------- */
+/*                             Purchases Route                                */
+/* -------------------------------------------------------------------------- */
+// Create Purchases
+router.post(
+  "/CreatePurchases",
+  AuthVerifyMiddleware,
+  PurchasesController.CreatePurchases
+);
+
 
 //  Exporting router module
 module.exports = router;
