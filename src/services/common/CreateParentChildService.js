@@ -1,6 +1,8 @@
 /* -------------------------------------------------------------------------- */
-/*                           Create ParentChildren Service Module                            */
+/*                           Create ParentChildren Service Module             */
 /* -------------------------------------------------------------------------- */
+//
+const mongoose = require("mongoose");
 
 // Create ParentChildren Service Function
 const CreateParentChildrenService = async (
@@ -9,43 +11,41 @@ const CreateParentChildrenService = async (
   ChildrenModel,
   JoinPropertyName
 ) => {
+  //* Create transaction session
+  const session = await mongoose.startSession();
   try {
-    // Getting Data from Request body
+// * Starting the transaction
+  await  session.startTransaction();
+    // First Database Process
     const Parent = Request.body["Parent"];
     // Adding User Email to Parent Body
     Parent.UserEmail = Request.headers["email"];
     // Inserting Parent Data into Collection
-    const ParentCreation = await ParentModel.create(Parent);
-    // If Parent Created Successfully then Create Children
-    if (ParentCreation._id) {
-      try {
-        // Getting Children from Request Body
-        const Children = Request.body["Children"];
-        // Adding User Email and ParentID to each Child
-        await Children.forEach((element) => {
-          element["UserEmail"] = Request.headers["email"];
-          element[JoinPropertyName] = ParentCreation["_id"];
-        });
-        // Inserting Children into Collection
-        const ChildrenCreation = await ChildrenModel.insertMany(Children);
-        // Return Success with Parent and Children Data
-        return {
-          status: "success",
-          data: { Parent: ParentCreation, Children: ChildrenCreation },
-        };
-      } catch (err) {
-        // If Children Creation Failed then Delete the Created Parent to maintain Data Integrity
-        await ParentModel.remove({ _id: ParentCreation["_id"] });
-        // Return Error
-        return { status: "fail", data: err.toString() };
-      }
-    } else {
-      return { status: "fail", data: "Parent Creation Failed" };
-    }
+    const ParentCreation = await ParentModel.create([Parent], { session });
+
+    //* Second Database Process
+
+    // Getting Children from Request Body
+    const Childs = Request.body["Childs"];
+    // Adding User Email and ParentID to each Child
+    await Childs.forEach((element) => {
+      element["UserEmail"] = Request.headers["email"];
+      element[JoinPropertyName] = ParentCreation["_id"];
+    });
+    // Inserting Children into Collection
+    const ChildrenCreation = await ChildrenModel.insertMany(Childs, {
+      session,
+    });
+
+// * Committing the transaction
+    await session.commitTransaction();
+    session.endSession();
+return {status: "Success", Parent: ParentCreation, Childs: ChildrenCreation};
   } catch (error) {
-    // Return Error
-    return { status: "fail", data: error.toString() };
+   //* Aborting the transaction in case of error
+    await session.abortTransaction();
+    session.endSession();
+    return {status: "fail", error: error.toString() };
   }
 };
-
 module.exports = CreateParentChildrenService;
