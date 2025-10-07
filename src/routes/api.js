@@ -249,7 +249,12 @@ router.post(
   AuthVerifyMiddleware,
   PurchasesController.CreatePurchases
 );
-
+// Purchases List
+router.get(
+  "/PurchasesList/:pageNo/:perPage/:searchKeyword",
+  AuthVerifyMiddleware,
+  PurchasesController.PurchasesList
+);
 
 //  Exporting router module
 module.exports = router;
