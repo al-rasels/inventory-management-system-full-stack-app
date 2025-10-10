@@ -23,6 +23,8 @@ const ExpenseTypesController = require("../controllers/Expense/ExpenseTypesContr
 const ExpensesController = require("../controllers/Expense/ExpensesController");
 const ProductsController = require("../controllers/Products/ProductsController");
 const PurchasesController = require("../controllers/Purchases/PurchasesController");
+const SalesController = require("../controllers/Sales/SalesController");
+const ReturnsController = require("../controllers/Returns/ReturnsController");
 
 /* -------------------------------------------------------------------------- */
 //  Creating Router instance
@@ -254,6 +256,33 @@ router.get(
   "/PurchasesList/:pageNo/:perPage/:searchKeyword",
   AuthVerifyMiddleware,
   PurchasesController.PurchasesList
+);
+/* -------------------------------------------------------------------------- */
+/*                             Sales Route                                    */
+/* -------------------------------------------------------------------------- */
+// Create Sales
+router.post("/CreateSales", AuthVerifyMiddleware, SalesController.CreateSales);
+// Sales List
+router.get(
+  "/SalesList/:pageNo/:perPage/:searchKeyword",
+  AuthVerifyMiddleware,
+  SalesController.SalesList
+);
+
+/* -------------------------------------------------------------------------- */
+/*                             Returns Route                                  */
+/* -------------------------------------------------------------------------- */
+// Create Returns
+router.post(
+  "/CreateReturns",
+  AuthVerifyMiddleware,
+  ReturnsController.CreateReturns
+);
+// Returns List
+router.get(
+  "/ReturnsList/:pageNo/:perPage/:searchKeyword",
+  AuthVerifyMiddleware,
+  ReturnsController.ReturnsList
 );
 
 //  Exporting router module
