@@ -257,6 +257,12 @@ router.get(
   AuthVerifyMiddleware,
   PurchasesController.PurchasesList
 );
+// Purchases Delete
+router.get(
+  "/PurchaseDelete/:id",
+  AuthVerifyMiddleware,
+  PurchasesController.PurchasesDelete
+);
 /* -------------------------------------------------------------------------- */
 /*                             Sales Route                                    */
 /* -------------------------------------------------------------------------- */
@@ -267,6 +273,12 @@ router.get(
   "/SalesList/:pageNo/:perPage/:searchKeyword",
   AuthVerifyMiddleware,
   SalesController.SalesList
+);
+// Sale Delete
+router.get(
+  "/SaleDelete/:id",
+  AuthVerifyMiddleware,
+  SalesController.SaleDelete
 );
 
 /* -------------------------------------------------------------------------- */
@@ -283,6 +295,12 @@ router.get(
   "/ReturnsList/:pageNo/:perPage/:searchKeyword",
   AuthVerifyMiddleware,
   ReturnsController.ReturnsList
+);
+// Return Delete
+router.get(
+  "/ReturnDelete/:id",
+  AuthVerifyMiddleware,
+  ReturnsController.ReturnDelete
 );
 
 //  Exporting router module

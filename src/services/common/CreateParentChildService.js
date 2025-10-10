@@ -30,7 +30,7 @@ const CreateParentChildrenService = async (
     // Adding User Email and ParentID to each Child
     await Childs.forEach((element) => {
       element["UserEmail"] = Request.headers["email"];
-      element[JoinPropertyName] = ParentCreation["_id"];
+      element[JoinPropertyName] = ParentCreation[0]["_id"];
     });
     // Inserting Children into Collection
     const ChildrenCreation = await ChildrenModel.insertMany(Childs, {

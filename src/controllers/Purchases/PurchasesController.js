@@ -7,8 +7,9 @@ const ChildModel = require("../../models/Purchases/PurchaseProductsModel");
 // Importing Services
 const CreateParentChildsService = require("../../services/common/CreateParentChildService");
 const ListOneJoinService = require("../../services/common/ListOneJoinService");
+const DeleteParentChildsService = require("../../services/common/DeleteParentChildsService");
 
-/* ------------------------------------------------------------------------ */
+/*-------------------------------------------------------------------------*/
 
 // Create Purchases Controller
 exports.CreatePurchases = async (Request, Response) => {
@@ -50,4 +51,16 @@ exports.PurchasesList = async (Request, Response) => {
   );
   // Sending Response to Client
   Response.status(200).json(Result);
-}; 
+};
+
+// Purchases Delete Controller
+exports.PurchasesDelete = async (Request, Response) => {
+  const Result = await DeleteParentChildsService(
+    Request,
+    ParentModel,
+    ChildModel,
+    "PurchaseID"
+  );
+
+  Response.status(200).json(Result);
+};

@@ -7,7 +7,7 @@ const ChildModel = require("../../models/Sales/SaleProductsModel");
 // Importing Services
 const CreateParentChildsService = require("../../services/common/CreateParentChildService");
 const ListOneJoinService = require("../../services/common/ListOneJoinService");
-
+const DeleteParentChildsService = require("../../services/common/DeleteParentChildsService");
 /* ------------------------------------------------------------------------ */
 
 // Create Sales Controller
@@ -49,5 +49,16 @@ exports.SalesList = async (Request, Response) => {
     JoinStage
   );
   // Sending Response to Client
+  Response.status(200).json(Result);
+};
+// Sales Delete Controller
+
+exports.SaleDelete = async (Request, Response) => {
+  const Result = await DeleteParentChildsService(
+    Request,
+    ParentModel,
+    ChildModel,
+    "SaleID"
+  );
   Response.status(200).json(Result);
 };

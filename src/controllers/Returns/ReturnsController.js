@@ -7,7 +7,7 @@ const ChildModel = require("../../models/Returns/ReturnProductsModel");
 // Importing Services
 const CreateParentChildsService = require("../../services/common/CreateParentChildService");
 const ListOneJoinService = require("../../services/common/ListOneJoinService");
-
+const DeleteParentChildsService = require("../../services/common/DeleteParentChildsService");
 /* ------------------------------------------------------------------------ */
 
 // Create Returns Controller
@@ -16,7 +16,7 @@ exports.CreateReturns = async (Request, Response) => {
     Request,
     ParentModel,
     ChildModel,
-    "PurchaseID"
+    "ReturnID"
   );
   Response.status(200).json(Result);
 };
@@ -50,5 +50,16 @@ exports.ReturnsList = async (Request, Response) => {
     JoinStage
   );
   // Sending Response to Client
+  Response.status(200).json(Result);
+};
+
+// Return Delete Controller
+exports.ReturnDelete = async (Request, Response) => {
+  const Result = await DeleteParentChildsService(
+    Request,
+    ParentModel,
+    ChildModel,
+    "ReturnID"
+  );
   Response.status(200).json(Result);
 };
