@@ -84,6 +84,12 @@ router.get(
   AuthVerifyMiddleware,
   BrandsController.BrandDropDown
 );
+// Delete Brand
+router.get(
+  "/DeleteBrand/:id",
+  AuthVerifyMiddleware,
+  BrandsController.DeleteBrand
+);
 
 /* -------------------------------------------------------------------------- */
 /*                             Categories Routes                              */
@@ -113,6 +119,12 @@ router.get(
   AuthVerifyMiddleware,
   CategoriesController.CategoriesDropDown
 );
+// Delete Categories
+router.get(
+  "/DeleteCategories/:id",
+  AuthVerifyMiddleware,
+  CategoriesController.DeleteCategories
+);
 
 /* -------------------------------------------------------------------------- */
 /*                             Customers Routes                               */
@@ -136,11 +148,18 @@ router.get(
   AuthVerifyMiddleware,
   CustomersController.CustomersList
 );
-// // Customers Dropdown
+//  Customers Dropdown
 router.get(
   "/CustomersDropDown",
   AuthVerifyMiddleware,
   CustomersController.CustomersDropDown
+);
+
+// Delete Customer
+router.get(
+  "/DeleteCustomer/:id",
+  AuthVerifyMiddleware,
+  CustomersController.DeleteCustomer
 );
 
 /* -------------------------------------------------------------------------- */
@@ -172,6 +191,12 @@ router.get(
   SuppliersController.SuppliersDropDown
 );
 
+// Delete Supplier
+router.get(
+  "/DeleteSupplier/:id",
+  AuthVerifyMiddleware,
+  SuppliersController.DeleteSupplier
+);
 /* -------------------------------------------------------------------------- */
 /*                             ExpenseTypes Routes                            */
 /* -------------------------------------------------------------------------- */
@@ -188,6 +213,7 @@ router.post(
   AuthVerifyMiddleware,
   ExpenseTypesController.UpdateExpenseTypes
 );
+
 // ExpenseTypes List
 router.get(
   "/ExpenseTypesList/:pageNo/:perPage/:searchKeyword",
@@ -199,6 +225,12 @@ router.get(
   "/ExpenseTypesDropDown",
   AuthVerifyMiddleware,
   ExpenseTypesController.ExpenseTypesDropDown
+);
+// Delete ExpenseType
+router.get(
+  "/DeleteExpenseType/:id",
+  AuthVerifyMiddleware,
+  ExpenseTypesController.DeleteExpenseType
 );
 
 /* -------------------------------------------------------------------------- */
@@ -216,11 +248,20 @@ router.post(
   AuthVerifyMiddleware,
   ExpensesController.UpdateExpenses
 );
+
+//Get Expenses List
 router.get(
   "/ExpensesList/:pageNo/:perPage/:searchKeyword",
   AuthVerifyMiddleware,
   ExpensesController.ExpensesList
 );
+// Delete Expense
+router.get(
+  "/DeleteExpense/:id",
+  AuthVerifyMiddleware,
+  ExpensesController.DeleteExpense
+);
+
 /* -------------------------------------------------------------------------- */
 /*                              Products Route                                */
 /* -------------------------------------------------------------------------- */
@@ -241,7 +282,12 @@ router.get(
   AuthVerifyMiddleware,
   ProductsController.ProductsList
 );
-
+// Delete Products
+router.get(
+  "/DeleteProducts/:id",
+  AuthVerifyMiddleware,
+  ProductsController.DeleteProduct
+);
 /* -------------------------------------------------------------------------- */
 /*                             Purchases Route                                */
 /* -------------------------------------------------------------------------- */
@@ -259,10 +305,11 @@ router.get(
 );
 // Purchases Delete
 router.get(
-  "/PurchaseDelete/:id",
+  "/DeletePurchase/:id",
   AuthVerifyMiddleware,
   PurchasesController.PurchasesDelete
 );
+
 /* -------------------------------------------------------------------------- */
 /*                             Sales Route                                    */
 /* -------------------------------------------------------------------------- */
@@ -276,10 +323,11 @@ router.get(
 );
 // Sale Delete
 router.get(
-  "/SaleDelete/:id",
+  "/DeleteSale/:id",
   AuthVerifyMiddleware,
   SalesController.SaleDelete
 );
+
 
 /* -------------------------------------------------------------------------- */
 /*                             Returns Route                                  */
@@ -298,7 +346,7 @@ router.get(
 );
 // Return Delete
 router.get(
-  "/ReturnDelete/:id",
+  "/DeleteReturn/:id",
   AuthVerifyMiddleware,
   ReturnsController.ReturnDelete
 );

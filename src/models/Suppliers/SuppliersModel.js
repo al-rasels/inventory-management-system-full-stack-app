@@ -6,7 +6,6 @@ const DataSchema = mongoose.Schema(
     UserEmail: { type: String },
     Name: { type: String },
     Phone: { type: String },
-    Email: { type: String },
     Address: { type: String },
     CreatedAt: { type: Date, default: Date.now() },
   },
