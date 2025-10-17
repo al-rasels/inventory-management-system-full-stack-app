@@ -78,6 +78,13 @@ router.get(
   AuthVerifyMiddleware,
   BrandsController.BrandList
 );
+
+// Brand Details By ID
+router.get(
+  "/BrandDetailsByID/:id",
+  AuthVerifyMiddleware,
+  BrandsController.BrandDetailsByID
+);
 // Brand Dropdown
 router.get(
   "/BrandDropDown",
@@ -112,6 +119,12 @@ router.get(
   "/CategoriesList/:pageNo/:perPage/:searchKeyword",
   AuthVerifyMiddleware,
   CategoriesController.CategoriesList
+);
+// Categories Details By ID
+router.get(
+  "/CategoriesDetailsByID/:id",
+  AuthVerifyMiddleware,
+  CategoriesController.CategoriesDetailsByID
 );
 // Categories Dropdown
 router.get(
@@ -148,6 +161,14 @@ router.get(
   AuthVerifyMiddleware,
   CustomersController.CustomersList
 );
+// Customers Details By ID
+router.get(
+  "/CustomersDetailsByID/:id",
+
+  AuthVerifyMiddleware,
+  CustomersController.CustomersDetailsByID
+);
+
 //  Customers Dropdown
 router.get(
   "/CustomersDropDown",
@@ -184,6 +205,13 @@ router.get(
   AuthVerifyMiddleware,
   SuppliersController.SuppliersList
 );
+// Suppliers Details By ID
+router.get(
+  "/SuppliersDetailsByID/:id",
+  AuthVerifyMiddleware,
+  SuppliersController.SuppliersDetailsByID
+);
+
 // Suppliers Dropdown
 router.get(
   "/SuppliersDropDown",
@@ -220,6 +248,12 @@ router.get(
   AuthVerifyMiddleware,
   ExpenseTypesController.ExpenseTypesList
 );
+// ExpenseTypes Details By ID
+router.get(
+  "/ExpenseTypesDetailsByID/:id",
+  AuthVerifyMiddleware,
+  ExpenseTypesController.ExpenseTypesDetailsByID
+);
 // ExpenseTypes Dropdown
 router.get(
   "/ExpenseTypesDropDown",
@@ -255,6 +289,12 @@ router.get(
   AuthVerifyMiddleware,
   ExpensesController.ExpensesList
 );
+// Get Expenses Details By ID
+router.get(
+  "/ExpensesDetailsByID/:id",
+  AuthVerifyMiddleware,
+  ExpensesController.ExpensesDetailsByID
+);
 // Delete Expense
 router.get(
   "/DeleteExpense/:id",
@@ -277,11 +317,19 @@ router.post(
   AuthVerifyMiddleware,
   ProductsController.UpdateProducts
 );
+// Products Details By ID
+router.get(
+  "/ProductsDetailsByID/:id",
+  AuthVerifyMiddleware,
+  ProductsController.ProductsDetailsByID
+);
+// Products List
 router.get(
   "/ProductsList/:pageNo/:perPage/:searchKeyword",
   AuthVerifyMiddleware,
   ProductsController.ProductsList
 );
+
 // Delete Products
 router.get(
   "/DeleteProducts/:id",
@@ -322,12 +370,7 @@ router.get(
   SalesController.SalesList
 );
 // Sale Delete
-router.get(
-  "/DeleteSale/:id",
-  AuthVerifyMiddleware,
-  SalesController.SaleDelete
-);
-
+router.get("/DeleteSale/:id", AuthVerifyMiddleware, SalesController.SaleDelete);
 
 /* -------------------------------------------------------------------------- */
 /*                             Returns Route                                  */
@@ -412,12 +455,6 @@ router.get(
   AuthVerifyMiddleware,
   SalesController.GetSalesSummery
 );
-
-
-
-
-
-
 
 /* -------------------------------------------------------------------------- */
 /*                              Exporting Router                              */
