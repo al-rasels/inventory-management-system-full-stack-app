@@ -3,13 +3,14 @@
 /* -------------------------------------------------------------------------- */
 
 const PurchaseProductModel = require("../../models/Purchases/PurchaseProductsModel");
-
+// Purchase Report Service Function
 const PurchaseReportService = async (Request) => {
   try {
+    // Extracting User Email and Date Range from Request
     const UserEmail = Request.headers["email"];
     const FromDate = Request.body["FromDate"];
     const ToDate = Request.body["ToDate"];
-
+// Aggregating Purchase Data Based on User Email and Date Range
     const data = await PurchaseProductModel.aggregate([
       {
         $match: {
@@ -18,6 +19,7 @@ const PurchaseReportService = async (Request) => {
         },
       },
       {
+        // Faceting the Results into Total and Detailed Rows
         $facet: {
           Total: [
             {
@@ -59,10 +61,13 @@ const PurchaseReportService = async (Request) => {
         },
       },
     ]);
-    return { status: "Success", data: data, query: FromDate + " to " + ToDate };
+    // Returning the Aggregated Data with Status
+    return { status: "Success", data: data };
   } catch (error) {
+    // Handling Errors and Returning Failure Status
     return { status: "fail", error: error.toString() };
   }
 };
 
+// Exporting the Purchase Report Service Module
 module.exports = PurchaseReportService;

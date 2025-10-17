@@ -382,6 +382,37 @@ router.post(
   SalesController.GetSalesReport
 );
 
+/* -------------------------------------------------------------------------- */
+/*                              Summery Controller                           */
+/* -------------------------------------------------------------------------- */
+// Expense Summery
+router.get(
+  "/ExpenseSummery",
+  AuthVerifyMiddleware,
+  ExpensesController.GetExpenseSummery
+);
+
+// Purchase Summery
+router.get(
+  "/PurchaseSummery",
+  AuthVerifyMiddleware,
+  PurchasesController.GetPurchaseSummery
+);
+
+// Return Summery
+router.get(
+  "/ReturnSummery",
+  AuthVerifyMiddleware,
+  ReturnsController.GetReturnSummery
+);
+
+// Return Summery
+router.get(
+  "/SalesSummery",
+  AuthVerifyMiddleware,
+  SalesController.GetSalesSummery
+);
+
 
 
 

@@ -9,6 +9,7 @@ const CreateParentChildsService = require("../../services/common/CreateParentChi
 const ListOneJoinService = require("../../services/common/ListOneJoinService");
 const DeleteParentChildsService = require("../../services/common/DeleteParentChildsService");
 const PurchaseReportService = require("../../services/report/PurchaseReportService");
+const PurchaseSummeryService = require("../../services/summery/PurchaseSummeryService");
 
 /*-------------------------------------------------------------------------*/
 
@@ -69,5 +70,10 @@ exports.PurchasesDelete = async (Request, Response) => {
 // Purchase Report Controller
 exports.GetPurchaseReport = async (Request, Response) => {
   const Result = await PurchaseReportService(Request);
+  Response.status(200).json(Result);
+};
+// Purchase Summery Controller
+exports.GetPurchaseSummery = async (Request, Response) => {
+  const Result = await PurchaseSummeryService(Request);
   Response.status(200).json(Result);
 };

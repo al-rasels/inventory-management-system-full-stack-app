@@ -8,7 +8,8 @@ const CreateService = require("../../services/common/CreateService");
 const UpdateService = require("../../services/common/UpdateService");
 const ListOneJoinService = require("../../services/common/ListOneJoinService");
 const DeleteService = require("../../services/common/DeleteService");
-const ExpenseReportService = require("../../services/report/ExpenseReportService.js");
+const ExpenseReportService = require("../../services/report/ExpenseReportService");
+const ExpenseSummeryService = require("../../services/summery/ExpenseSummeryService");
 
 /* ------------------------------------------------------------------------ */
 
@@ -56,5 +57,11 @@ exports.DeleteExpense = async (Request, Response) => {
 // Expense Report Controller
 exports.GetExpenseReport = async (Request, Response) => {
   const Result = await ExpenseReportService(Request);
+  Response.status(200).json(Result);
+};
+
+// Expense Summery Controller
+exports.GetExpenseSummery = async (Request, Response) => {
+  const Result = await ExpenseSummeryService(Request);
   Response.status(200).json(Result);
 };

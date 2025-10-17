@@ -9,6 +9,7 @@ const CreateParentChildsService = require("../../services/common/CreateParentChi
 const ListOneJoinService = require("../../services/common/ListOneJoinService");
 const DeleteParentChildsService = require("../../services/common/DeleteParentChildsService");
 const PurchaseReportService = require("../../services/report/PurchaseReportService");
+const ReturnSummeryService = require("../../services/summery/ReturnSummeryService");
 /* ------------------------------------------------------------------------ */
 
 // Create Returns Controller
@@ -68,5 +69,10 @@ exports.ReturnDelete = async (Request, Response) => {
 // Return Report Controller
 exports.GetReturnReport = async (Request, Response) => {
   const Result = await PurchaseReportService(Request);
+  Response.status(200).json(Result);
+};
+// Return Summery Controller
+exports.GetReturnSummery = async (Request, Response) => {
+  const Result = await ReturnSummeryService(Request);
   Response.status(200).json(Result);
 };
