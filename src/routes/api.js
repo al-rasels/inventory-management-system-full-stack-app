@@ -351,5 +351,44 @@ router.get(
   ReturnsController.ReturnDelete
 );
 
-//  Exporting router module
+/* -------------------------------------------------------------------------- */
+/*                              Report Controller                           */
+/* -------------------------------------------------------------------------- */
+// Expense Report
+router.post(
+  "/ExpenseByDate",
+  AuthVerifyMiddleware,
+  ExpensesController.GetExpenseReport
+);
+
+// Purchase Report
+router.post(
+  "/PurchaseByDate",
+  AuthVerifyMiddleware,
+  PurchasesController.GetPurchaseReport
+);
+
+// Return Report
+router.post(
+  "/ReturnByDate",
+  AuthVerifyMiddleware,
+  ReturnsController.GetReturnReport
+);
+
+// Return Report
+router.post(
+  "/SalesByDate",
+  AuthVerifyMiddleware,
+  SalesController.GetSalesReport
+);
+
+
+
+
+
+
+
+/* -------------------------------------------------------------------------- */
+/*                              Exporting Router                              */
+/* -------------------------------------------------------------------------- */
 module.exports = router;

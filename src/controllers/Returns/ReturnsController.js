@@ -8,6 +8,7 @@ const ChildModel = require("../../models/Returns/ReturnProductsModel");
 const CreateParentChildsService = require("../../services/common/CreateParentChildService");
 const ListOneJoinService = require("../../services/common/ListOneJoinService");
 const DeleteParentChildsService = require("../../services/common/DeleteParentChildsService");
+const PurchaseReportService = require("../../services/report/PurchaseReportService");
 /* ------------------------------------------------------------------------ */
 
 // Create Returns Controller
@@ -61,5 +62,11 @@ exports.ReturnDelete = async (Request, Response) => {
     ChildModel,
     "ReturnID"
   );
+  Response.status(200).json(Result);
+};
+
+// Return Report Controller
+exports.GetReturnReport = async (Request, Response) => {
+  const Result = await PurchaseReportService(Request);
   Response.status(200).json(Result);
 };

@@ -8,6 +8,7 @@ const ChildModel = require("../../models/Purchases/PurchaseProductsModel");
 const CreateParentChildsService = require("../../services/common/CreateParentChildService");
 const ListOneJoinService = require("../../services/common/ListOneJoinService");
 const DeleteParentChildsService = require("../../services/common/DeleteParentChildsService");
+const PurchaseReportService = require("../../services/report/PurchaseReportService");
 
 /*-------------------------------------------------------------------------*/
 
@@ -62,5 +63,11 @@ exports.PurchasesDelete = async (Request, Response) => {
     "PurchaseID"
   );
 
+  Response.status(200).json(Result);
+};
+
+// Purchase Report Controller
+exports.GetPurchaseReport = async (Request, Response) => {
+  const Result = await PurchaseReportService(Request);
   Response.status(200).json(Result);
 };

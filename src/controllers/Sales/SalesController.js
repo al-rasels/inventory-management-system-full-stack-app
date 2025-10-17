@@ -8,6 +8,7 @@ const ChildModel = require("../../models/Sales/SaleProductsModel");
 const CreateParentChildsService = require("../../services/common/CreateParentChildService");
 const ListOneJoinService = require("../../services/common/ListOneJoinService");
 const DeleteParentChildsService = require("../../services/common/DeleteParentChildsService");
+const SalesReportService = require("../../services/report/SalesReportService");
 /* ------------------------------------------------------------------------ */
 
 // Create Sales Controller
@@ -60,5 +61,10 @@ exports.SaleDelete = async (Request, Response) => {
     ChildModel,
     "SaleID"
   );
+  Response.status(200).json(Result);
+};
+// Sale Report Controller
+exports.GetSalesReport = async (Request, Response) => {
+  const Result = await SalesReportService(Request);
   Response.status(200).json(Result);
 };
